@@ -1,5 +1,5 @@
 
-import inventory.InventoryFacade;
+import inventory.Inventory;
 import logger.ActivityLogger;
 import observer.SalesServiceObserver;
 import observer.WharehouseServiceObserver;
@@ -14,7 +14,7 @@ public class Main {
         SalesServiceObserver salesServiceObserver = new SalesServiceObserver();
         WharehouseServiceObserver wharehouseServiceObserver = new WharehouseServiceObserver();
 
-        InventoryFacade inventory = InventoryFacade.getInstance();
+        Inventory inventory = Inventory.getInstance();
 
         inventory.registerObserver(salesServiceObserver);
         inventory.registerObserver(wharehouseServiceObserver);

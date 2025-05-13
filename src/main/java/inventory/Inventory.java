@@ -7,25 +7,25 @@ import logger.ActivityLogger;
 import observer.Observer;
 import product.Product;
 
-public class InventoryFacade {
+public class Inventory {
 
-    private static InventoryFacade instance;
+    private static Inventory instance;
     private final List<Observer> observersList = new ArrayList<>();
     private final InventoryList inventoryList;
     private final AddProductInventory addProductInventory;
     private final FindOneProductById findOneProductById;
 
   
-    private InventoryFacade() {
+    private Inventory() {
         this.inventoryList = InventoryList.getInstance();
         this.addProductInventory = new AddProductInventory();
         this.findOneProductById = new FindOneProductById();
 
     }
 
-    public static InventoryFacade getInstance() {
+    public static Inventory getInstance() {
         if (instance == null){
-        instance = new InventoryFacade();
+        instance = new Inventory();
         }
         return instance;
     }
