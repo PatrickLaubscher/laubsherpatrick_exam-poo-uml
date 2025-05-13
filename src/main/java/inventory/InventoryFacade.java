@@ -13,11 +13,13 @@ public class InventoryFacade {
     private final List<Observer> observersList = new ArrayList<>();
     private final InventoryList inventoryList;
     private final AddProductInventory addProductInventory;
+    private final FindOneProductById findOneProductById;
 
   
     private InventoryFacade() {
-        this.addProductInventory = new AddProductInventory();
         this.inventoryList = InventoryList.getInstance();
+        this.addProductInventory = new AddProductInventory();
+        this.findOneProductById = new FindOneProductById();
 
     }
 
@@ -50,6 +52,9 @@ public class InventoryFacade {
         ActivityLogger.getInstance().logActivity("Le produit suivant a été ajouté à l'inventaire : " + product.getDescription());
     }
 
+    public String findOneProductById(String id) {
+        return findOneProductById.findOneProductById(id);
+    }
 
 
     

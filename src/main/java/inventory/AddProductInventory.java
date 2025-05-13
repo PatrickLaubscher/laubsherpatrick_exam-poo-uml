@@ -5,8 +5,14 @@ import product.Product;
 
 public class AddProductInventory {
 
-        public void addProduct(Product product) {
-        InventoryList.getInstance().getInventoryList().add(product.getDescription());
+    private final InventoryList inventoryList;
+
+    public AddProductInventory() {
+        this.inventoryList = InventoryList.getInstance();
+    }
+
+    public void addProduct(Product product) {
+        inventoryList.getInventoryList().add(product.getDescription());
     }
     
 }
