@@ -7,19 +7,23 @@ import logger.ActivityLogger;
 import observer.Observer;
 import product.Product;
 
-public class Inventory {
+public class InventoryFacade {
 
-    private static Inventory instance;
-    private final List<String> inventoryList;
+    private static InventoryFacade instance;
     private final List<Observer> observersList = new ArrayList<>();
+    private final InventoryList inventoryList;
+    private final AddProductInventory addProductInventory;
+
   
-    private Inventory() {
-        this.inventoryList = new ArrayList<>();
+    private InventoryFacade() {
+        this.addProductInventory = new AddProductInventory();
+        this.inventoryList = InventoryList.getInstance();
+
     }
 
-    public static Inventory getInstance() {
+    public static InventoryFacade getInstance() {
         if (instance == null){
-        instance = new Inventory();
+        instance = new InventoryFacade();
         }
         return instance;
     }
@@ -37,14 +41,16 @@ public class Inventory {
     }
 
     public List<String> getAllProducts() {
-        return this.inventoryList;
+        return inventoryList.getInventoryList();  
     }
 
     public void addProduct(Product product) {
-        this.inventoryList.add(product.getDescription());
+        this.addProductInventory.addProduct(product);
         notifyObservers(product);
         ActivityLogger.getInstance().logActivity("Le produit suivant a été ajouté à l'inventaire : " + product.getDescription());
     }
+
+
 
     
 }
