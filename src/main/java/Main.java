@@ -35,7 +35,7 @@ public class Main {
 
         System.err.println(ActivityLogger.getInstance().getActivityLog());
         
-        System.err.println(inventory.findProductById("E1"));
+        System.err.println(inventory.findOneProductById("E1"));
        
 
         

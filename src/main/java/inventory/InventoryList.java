@@ -19,6 +19,7 @@ public class InventoryList {
         return instance;
     }
 
+    // Renvoie la liste de l'inventaire sous forme de String
     public List<String> getInventoryList() {
         return this.inventoryList;
     }
