@@ -1,8 +1,6 @@
 package observer;
 
-import product.Product;
-
 public interface Observer {
-  void update(Product product);
+  void update(String message);
 }
 

@@ -1,7 +1,7 @@
 package inventory;
 
 
-import product.Product;
+import product.ProductBase;
 
 public class AddProductInventory {
 
@@ -11,8 +11,8 @@ public class AddProductInventory {
         this.inventoryList = InventoryList.getInstance();
     }
 
-    public void addProduct(Product product) {
-        inventoryList.getInventoryList().add(product.getDescription());
+    public void addProduct(ProductBase product) {
+        inventoryList.getInventoryList().add(product);
     }
     
 }

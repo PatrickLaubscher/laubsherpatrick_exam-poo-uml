@@ -5,7 +5,7 @@ import java.util.List;
 
 import logger.ActivityLogger;
 import observer.Observer;
-import product.Product;
+import product.ProductBase;
 
 public class Inventory {
 
@@ -14,13 +14,14 @@ public class Inventory {
     private final InventoryList inventoryList;
     private final AddProductInventory addProductInventory;
     private final FindOneProductById findOneProductById;
+    private final RemoveProductFromInventory removeProductFromInventory;
 
   
     private Inventory() {
         this.inventoryList = InventoryList.getInstance();
         this.addProductInventory = new AddProductInventory();
         this.findOneProductById = new FindOneProductById();
-
+        this.removeProductFromInventory = new RemoveProductFromInventory();
     }
 
     public static Inventory getInstance() {
@@ -36,26 +37,37 @@ public class Inventory {
         }
     }
 
-    public void notifyObservers(Product product) {
+    public void notifyObservers(String message) {
         for (Observer observer: observersList) {
-        observer.update(product);;
+        observer.update(message);;
         }
     }
 
-    public List<String> getAllProducts() {
+    public List<ProductBase> getAllProducts() {
         return inventoryList.getInventoryList();  
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(ProductBase product) {
         this.addProductInventory.addProduct(product);
-        notifyObservers(product);
-        ActivityLogger.getInstance().logActivity("Le produit suivant a été ajouté à l'inventaire : " + product.getDescription());
+        String message = "Le produit suivant a été ajouté à l'inventaire : " + product.getDescription();
+        notifyObservers(message);
+        ActivityLogger.getInstance().logActivity(message);
     }
 
-    public String findOneProductById(String id) {
+    public ProductBase findOneProductById(String id) {
         return findOneProductById.findOneProductById(id);
     }
 
-
+    public void removeOneProductFromInventory(String id) {
+        ProductBase product = this.findOneProductById.findOneProductById(id);
+        if (product == null) {
+            System.err.println("Le produit avec l'id " + id + " n'existe pas dans l'inventaire.");
+        } else {
+            this.removeProductFromInventory.RemoveOneProductFromInventory(id);
+            String message = "Le produit suivant a été retiré de l'inventaire : " + id;
+            notifyObservers(message);
+            ActivityLogger.getInstance().logActivity(message);
+        }
+    }
     
 }

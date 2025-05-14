@@ -1,5 +1,7 @@
 package inventory;
 
+import product.ProductBase;
+
 public class FindOneProductById {
     
     private final InventoryList inventoryList;
@@ -8,10 +10,10 @@ public class FindOneProductById {
         this.inventoryList = InventoryList.getInstance();
     }
 
-    // Renvoie le produit correspondant à l'id sous forme de String
-    public String findOneProductById(String id) {
-        for (String product : inventoryList.getInventoryList()) {
-            if (product.contains(id)) {
+    // Renvoie le produit correspondant à l'id 
+    public ProductBase findOneProductById(String id) {
+        for (ProductBase product : inventoryList.getInventoryList()) {
+            if (product.getId().equals(id)) {
                 return product;
             }
         }

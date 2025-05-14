@@ -3,10 +3,12 @@ package inventory;
 import java.util.ArrayList;
 import java.util.List;
 
+import product.ProductBase;
+
 public class InventoryList {
 
     private static InventoryList instance;
-    private final List<String> inventoryList;
+    private final List<ProductBase> inventoryList;
 
     private InventoryList() {
         this.inventoryList = new ArrayList<>();
@@ -20,7 +22,7 @@ public class InventoryList {
     }
 
     // Renvoie la liste de l'inventaire sous forme de String
-    public List<String> getInventoryList() {
+    public List<ProductBase> getInventoryList() {
         return this.inventoryList;
     }
     

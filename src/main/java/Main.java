@@ -31,13 +31,22 @@ public class Main {
         //System.err.println(ProductV1.getDescription());
         //System.err.println(ProductA1.getDescription());
 
-        System.err.println(inventory.getAllProducts());
+        for (ProductBase product : inventory.getAllProducts()) {
+            System.err.println(product.getDescription());
+        }
+        
 
         System.err.println(ActivityLogger.getInstance().getActivityLog());
         
-        System.err.println(inventory.findOneProductById("E1"));
+        System.err.println(inventory.findOneProductById("E1").getDescription());
        
+        inventory.removeOneProductFromInventory("E5");
+        inventory.removeOneProductFromInventory("E1");
 
+        for (ProductBase product : inventory.getAllProducts()) {
+            System.err.println(product.getDescription());
+        }
+        
         
     }
 }
