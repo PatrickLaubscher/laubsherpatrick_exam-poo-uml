@@ -1,7 +1,5 @@
 package inventory;
 
-import product.ProductBase;
-
 public class RemoveProductFromInventory {
     
     private final InventoryList inventoryList;
@@ -11,15 +9,9 @@ public class RemoveProductFromInventory {
     }
 
     // Méthode pour supprimer un produit de l'inventaire
-    public String RemoveOneProductFromInventory(String id) {
-        for (ProductBase product : inventoryList.getInventoryList()) {
-            if (product.getId().equals(id)) {
-                inventoryList.getInventoryList().remove(product);
-            } else {
-                System.err.println("Ce produit n'existe pas dans l'inventaire.");
-            }
-        }
-        return null;
+    public void RemoveOneProductFromInventory(String id) {
+        inventoryList.getInventoryList().removeIf(product -> product.getId().equals(id));
+ 
     }
 
 }

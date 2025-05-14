@@ -55,16 +55,14 @@ public class Inventory {
     }
 
     public ProductBase findOneProductById(String id) {
-        return findOneProductById.findOneProductById(id);
+        return this.findOneProductById.findOneProductById(id);
     }
 
     public void removeOneProductFromInventory(String id) {
         ProductBase product = this.findOneProductById.findOneProductById(id);
-        if (product == null) {
-            System.err.println("Le produit avec l'id " + id + " n'existe pas dans l'inventaire.");
-        } else {
+        if (product != null) {
             this.removeProductFromInventory.RemoveOneProductFromInventory(id);
-            String message = "Le produit suivant a été retiré de l'inventaire : " + id;
+            String message = "Le produit suivant a été retiré de l'inventaire : " + product.getDescription();
             notifyObservers(message);
             ActivityLogger.getInstance().logActivity(message);
         }

@@ -17,6 +17,7 @@ public class FindOneProductById {
                 return product;
             }
         }
+        System.err.println("Le produit avec l'id " + id + " n'existe pas dans l'inventaire.");
         return null;
     }
 
