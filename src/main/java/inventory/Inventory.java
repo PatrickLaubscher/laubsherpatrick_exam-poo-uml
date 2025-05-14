@@ -39,7 +39,7 @@ public class Inventory {
 
     public void notifyObservers(String message) {
         for (Observer observer: observersList) {
-        observer.update(message);;
+        observer.update(message);
         }
     }
 
