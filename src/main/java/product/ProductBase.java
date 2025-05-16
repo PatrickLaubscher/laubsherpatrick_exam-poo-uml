@@ -1,6 +1,6 @@
 package product;
 
-public class ProductBase implements Product {
+public abstract class ProductBase implements Product {
 
     private final String id;
     private final String name; 
